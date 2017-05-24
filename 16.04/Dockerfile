@@ -45,9 +45,6 @@ RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 # let Upstart know it's in a container
 ENV container docker
 
-# set a cheap, simple password for great convenience
-RUN echo 'root:docker.io' | chpasswd
-
 # we can has SSH
 EXPOSE 22
 

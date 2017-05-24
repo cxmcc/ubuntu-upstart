@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 # Get rid of systemd
 RUN apt-get purge -y systemd --allow-remove-essential
 RUN apt-get update
-RUN apt-get install -y upstart cron ssh
+RUN apt-get install -y upstart cron ssh sudo
 
 # much of this was gleaned from https://github.com/lxc/lxc/blob/lxc-0.8.0/templates/lxc-ubuntu.in
 # and then heavily modified and hacked like crazy

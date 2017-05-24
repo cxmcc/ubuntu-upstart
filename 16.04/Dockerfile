@@ -1,10 +1,12 @@
-FROM ubuntu:14.10
+FROM ubuntu:16.04
+
+# Get rid of systemd
+RUN apt-get purge -y systemd --allow-remove-essential
+RUN apt-get update
+RUN apt-get install -y upstart cron ssh
 
 # much of this was gleaned from https://github.com/lxc/lxc/blob/lxc-0.8.0/templates/lxc-ubuntu.in
 # and then heavily modified and hacked like crazy
-
-# we're going to want this bad boy installed so we can connect :)
-RUN apt-get update && apt-get install -y ssh
 
 ADD init-fake.conf /etc/init/fake-container-events.conf
 
@@ -50,4 +52,4 @@ RUN echo 'root:docker.io' | chpasswd
 EXPOSE 22
 
 # prepare for takeoff
-CMD ["/sbin/init"]
+CMD ["/sbin/upstart"]
